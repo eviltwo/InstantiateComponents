@@ -1,0 +1,17 @@
+{
+    "name": "com.eviltwo.instantiate-components",
+    "displayName": "Instantiate Components",
+    "version": "1.0.0",
+    "unity": "2022.3",
+    "description": "These are components that generate prefab instances within shapes such as box or sphere.",
+    "author": {
+        "name": "DAIKI(eviltwo)",
+        "url": "https://github.com/eviltwo"
+    },
+
+    "keywords": [
+    ],
+
+    "dependencies": {
+    }
+}
