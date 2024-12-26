@@ -13,9 +13,9 @@ https://github.com/eviltwo/InstantiateComponents.git?path=InstantiateComponents/
 ```
 
 # Features
-- Configurable range, density, spacing, and offset  
-- Can fit to terrain  
-- Operates in both editor and runtime  
-- Generated instances are hidden in the hierarchy (same behavior as SplineInstantiate)
+- Configurable size, density, spacing, and offset.
+- Can fit to terrain.
+- Operates in both editor and runtime.
+- Generated instances are hidden in the hierarchy. (same behavior as SplineInstantiate)
 
 
