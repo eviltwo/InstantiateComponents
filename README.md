@@ -1,4 +1,4 @@
-# InstantiateComponents
+# Instantiate Components
 These are components that generate prefab instances within shapes such as box or sphere.
 
 ![image](https://github.com/user-attachments/assets/7fb5c3c1-01ff-4409-a300-92dce6a3fab4)
