@@ -9,10 +9,17 @@ namespace InstantiateComponents.Editor
     {
         private bool _isRandomPositionOffset;
         private static bool IsFoldoutPositionOffset;
+        private bool _isRandomRotationOffset;
+        private static bool IsFoldoutRotationOffset;
+        private bool _isRandomScaleOffset;
+        private static bool IsFoldoutScaleOffset;
+        private static bool IsFoldoutTerrainSettings;
 
         protected virtual void OnEnable()
         {
             _isRandomPositionOffset = IsRandomRange(serializedObject.FindProperty(nameof(ShapeInstantiate.PositionOffset)));
+            _isRandomRotationOffset = IsRandomRange(serializedObject.FindProperty(nameof(ShapeInstantiate.RotationOffset)));
+            _isRandomScaleOffset = IsRandomRange(serializedObject.FindProperty(nameof(ShapeInstantiate.ScaleOffset)));
         }
 
         public override void OnInspectorGUI()
@@ -23,6 +30,19 @@ namespace InstantiateComponents.Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.Density)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.Spacing)));
             DrawVector3Range(serializedObject.FindProperty(nameof(ShapeInstantiate.PositionOffset)), ref _isRandomPositionOffset, ref IsFoldoutPositionOffset);
+            DrawVector3Range(serializedObject.FindProperty(nameof(ShapeInstantiate.RotationOffset)), ref _isRandomRotationOffset, ref IsFoldoutRotationOffset);
+            DrawVector3Range(serializedObject.FindProperty(nameof(ShapeInstantiate.ScaleOffset)), ref _isRandomScaleOffset, ref IsFoldoutScaleOffset);
+            using (var foldoutScope = new FoldoutHeaderGroupScope(IsFoldoutTerrainSettings, "Terrain"))
+            using (new EditorGUI.IndentLevelScope())
+            {
+                IsFoldoutTerrainSettings = foldoutScope.foldout;
+                if (IsFoldoutTerrainSettings)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.FitHeightToTerrain)));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.FitRotationToTerrain)));
+                }
+            }
+            EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.RandomSeed)));
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -39,21 +59,23 @@ namespace InstantiateComponents.Editor
             var minProperty = vector3RangeProperty.FindPropertyRelative(nameof(ShapeInstantiate.Vector3Range.Min));
             var maxProperty = vector3RangeProperty.FindPropertyRelative(nameof(ShapeInstantiate.Vector3Range.Max));
 
+            using (new EditorGUILayout.HorizontalScope())
             using (var foldoutScope = new FoldoutHeaderGroupScope(foldout, vector3RangeProperty.displayName))
-            using (new EditorGUI.IndentLevelScope())
             {
                 foldout = foldoutScope.foldout;
+                using (var changeCheck = new EditorGUI.ChangeCheckScope())
+                {
+                    isRandom = GUILayout.Toggle(isRandom, "Ranmdom", GUI.skin.button, GUILayout.ExpandWidth(false));
+                    if (changeCheck.changed && !isRandom)
+                    {
+                        maxProperty.vector3Value = minProperty.vector3Value;
+                    }
+                }
+            }
+            using (new EditorGUI.IndentLevelScope())
+            {
                 if (foldout)
                 {
-                    using (var changeCheck = new EditorGUI.ChangeCheckScope())
-                    {
-                        isRandom = EditorGUILayout.Toggle("Random", isRandom);
-                        if (changeCheck.changed && !isRandom)
-                        {
-                            maxProperty.vector3Value = minProperty.vector3Value;
-                        }
-                    }
-
                     using (var changeCheck = new EditorGUI.ChangeCheckScope())
                     {
                         if (isRandom)
@@ -73,8 +95,6 @@ namespace InstantiateComponents.Editor
                     }
                 }
             }
-
-
         }
     }
 
