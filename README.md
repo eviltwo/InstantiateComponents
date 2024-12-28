@@ -3,14 +3,11 @@ These are components that generate prefab instances within shapes such as box or
 
 ![image](https://github.com/user-attachments/assets/7fb5c3c1-01ff-4409-a300-92dce6a3fab4)
 
-![image](https://github.com/user-attachments/assets/964e87a2-84a8-4d10-8ad9-d79de0b03455)
+![image](https://github.com/user-attachments/assets/b1d693eb-6323-47ba-8dc6-c0d2fb270291)
 
-![image](https://github.com/user-attachments/assets/2e87ea11-af4e-470a-807b-4c7c8c50a3d8)
+![image](https://github.com/user-attachments/assets/1e53ff0e-5335-4271-9673-90b78fbbc1d1)
 
-# Install with UPM
-```
-https://github.com/eviltwo/InstantiateComponents.git?path=InstantiateComponents/Assets/InstantiateComponents
-```
+![image](https://github.com/user-attachments/assets/7638c29d-6380-492c-bb18-393adba71c79)
 
 # Features
 - Configurable size, density, spacing, and offset.
@@ -18,4 +15,12 @@ https://github.com/eviltwo/InstantiateComponents.git?path=InstantiateComponents/
 - Operates in both editor and runtime.
 - Generated instances are hidden in the hierarchy. (same behavior as SplineInstantiate)
 
+# Install with UPM
+```
+https://github.com/eviltwo/InstantiateComponents.git?path=InstantiateComponents/Assets/InstantiateComponents
+```
 
+# Support My Work
+As a solo developer, your financial support would be greatly appreciated and helps me continue working on this project.
+- [Asset Store](https://assetstore.unity.com/publishers/12117)
+- [GitHub Sponsors](https://github.com/sponsors/eviltwo)
