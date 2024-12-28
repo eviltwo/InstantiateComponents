@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.1] - 2024-12-29
+## [1.0.1] - 2024-12-29 - In Development
 ### Modified
 - Modified the name of the parent object of the instance. 
 
