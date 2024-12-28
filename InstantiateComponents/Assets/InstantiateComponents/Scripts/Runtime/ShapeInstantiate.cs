@@ -17,7 +17,10 @@ namespace InstantiateComponents
         }
 
         [SerializeField]
-        public List<InstantiableItem> ItemsToInstantiate = new List<InstantiableItem>();
+        public List<InstantiableItem> ItemsToInstantiate = new List<InstantiableItem>()
+        {
+            new InstantiableItem { Prefab = null, Probability = 1f },
+        };
 
         [SerializeField]
         public float Density = 0.5f;
