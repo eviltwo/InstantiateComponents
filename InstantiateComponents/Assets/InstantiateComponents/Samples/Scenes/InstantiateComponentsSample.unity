@@ -634,7 +634,7 @@ MonoBehaviour:
     Max: {x: 0, y: 0, z: 0}
   RotationOffset:
     Min: {x: 0, y: 0, z: 0}
-    Max: {x: 0, y: 0, z: 0}
+    Max: {x: 0, y: 360, z: 0}
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -698,7 +698,7 @@ MonoBehaviour:
     Max: {x: 0, y: 0, z: 0}
   RotationOffset:
     Min: {x: 0, y: 0, z: 0}
-    Max: {x: 0, y: 0, z: 0}
+    Max: {x: 0, y: 360, z: 0}
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
