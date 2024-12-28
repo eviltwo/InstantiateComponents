@@ -294,9 +294,8 @@ namespace InstantiateComponents
         {
             if (_instanceRoot == null)
             {
-                _instanceRoot = new GameObject("SplineSpanInstanceRoot");
+                _instanceRoot = new GameObject("InstanceRoot");
                 _instanceRoot.hideFlags |= HideFlags.HideAndDontSave;
-                //InstanceRoot.hideFlags |= HideFlags.NotEditable | HideFlags.DontSave;
                 _instanceRoot.transform.SetParent(transform, false);
             }
             var instance = Instantiate(prefab, _instanceRoot.transform);
