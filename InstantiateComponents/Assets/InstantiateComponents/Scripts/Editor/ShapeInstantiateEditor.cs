@@ -54,6 +54,7 @@ namespace InstantiateComponents.Editor
             return min != max;
         }
 
+        private static GUIContent BlankContent = new GUIContent(" ");
         private static void DrawVector3Range(SerializedProperty vector3RangeProperty, ref bool isRandom, ref bool foldout)
         {
             var minProperty = vector3RangeProperty.FindPropertyRelative(nameof(ShapeInstantiate.Vector3Range.Min));
@@ -85,7 +86,7 @@ namespace InstantiateComponents.Editor
                         }
                         else
                         {
-                            EditorGUILayout.PropertyField(minProperty, GUIContent.none);
+                            EditorGUILayout.PropertyField(minProperty, BlankContent);
                         }
 
                         if (changeCheck.changed && !isRandom)
