@@ -7,7 +7,7 @@ These are components that generate prefab instances within shapes such as box or
 
 ![image](https://github.com/user-attachments/assets/1e53ff0e-5335-4271-9673-90b78fbbc1d1)
 
-![image](https://github.com/user-attachments/assets/7638c29d-6380-492c-bb18-393adba71c79)
+![image](https://github.com/user-attachments/assets/21765f61-fa38-4e89-95ea-6ffa67c621b8)
 
 # Features
 - Configurable size, density, spacing, and offset.
