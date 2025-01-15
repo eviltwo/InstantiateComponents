@@ -54,6 +54,10 @@ namespace InstantiateComponents
         public int RandomSeed = 0;
 
         public int CountLimit { get; set; } = 10000;
+
+        private Vector3 _lastPosition;
+        private Quaternion _lastRotation;
+
         private bool _isDirty;
 
         private struct Location
@@ -69,6 +73,8 @@ namespace InstantiateComponents
             {
                 RandomSeed = GetInstanceID();
             }
+            _lastPosition = transform.position;
+            _lastRotation = transform.rotation;
             SetDirty();
         }
 
@@ -79,7 +85,10 @@ namespace InstantiateComponents
 
         private void OnValidate()
         {
-            SetDirty();
+            if (!Application.isPlaying)
+            {
+                SetDirty();
+            }
         }
 
         public void SetDirty()
@@ -89,6 +98,13 @@ namespace InstantiateComponents
 
         private void Update()
         {
+            if (!Application.isPlaying && (_lastPosition != transform.position || _lastRotation != transform.rotation))
+            {
+                _lastPosition = transform.position;
+                _lastRotation = transform.rotation;
+                SetDirty();
+            }
+
             if (_isDirty && isActiveAndEnabled)
             {
                 _isDirty = false;
