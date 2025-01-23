@@ -80,11 +80,14 @@ namespace InstantiateComponents
 
         private void OnDisable()
         {
-            ClearInstances();
+            ClearControlledInstance();
+            ClearUnusedInstances();
         }
 
         private void OnValidate()
         {
+            Density = Mathf.Max(0, Density);
+            Spacing = Mathf.Max(0, Spacing);
             if (!Application.isPlaying)
             {
                 SetDirty();
@@ -112,11 +115,11 @@ namespace InstantiateComponents
             }
         }
 
+        private static List<int> _usedPrefabIds = new List<int>();
         private static List<Location> _locationBuffer = new List<Location>();
+        private static List<InstantiableItem> _itemBuffer = new List<InstantiableItem>();
         private void UpdateInstances()
         {
-            ClearInstances();
-
             if (ItemsToInstantiate.Count == 0)
             {
                 return;
@@ -137,23 +140,105 @@ namespace InstantiateComponents
                 _locationBuffer.Clear();
                 CalculateLocations(_locationBuffer);
 
-                // Instantiate
-                foreach (var location in _locationBuffer)
+                // Items
+                _itemBuffer.Clear();
+                for (var i = 0; i < _locationBuffer.Count; i++)
                 {
-                    var item = ItemsToInstantiate[randomBox.Choose()];
-                    if (item.Prefab != null)
+                    _itemBuffer.Add(ItemsToInstantiate[randomBox.Choose()]);
+                }
+
+                // Check rebuild
+                var requireRebuild = false;
+                requireRebuild |= _locationBuffer.Count != _usedPrefabIds.Count;
+
+                // Check prefab id
+                if (!requireRebuild)
+                {
+                    var diffId = false;
+                    for (var i = 0; i < _itemBuffer.Count; i++)
                     {
-                        var instance = CreateInstance(item.Prefab);
+                        var instanceId = _itemBuffer[i].Prefab?.GetInstanceID() ?? 0;
+                        if (instanceId != _usedPrefabIds[i])
+                        {
+                            diffId = true;
+                            break;
+                        }
+                    }
+                    requireRebuild |= diffId;
+                }
+
+                // Check instance count
+                requireRebuild |= _instanceRoot == null;
+                if (!requireRebuild)
+                {
+                    var childCount = _instanceRoot.transform.childCount;
+                    var validSourceCount = 0;
+                    foreach (var sourceId in _usedPrefabIds)
+                    {
+                        if (sourceId != 0)
+                        {
+                            validSourceCount++;
+                        }
+                    }
+                    requireRebuild |= childCount != validSourceCount;
+                }
+
+                // Rebuild instances
+                if (requireRebuild)
+                {
+                    _usedPrefabIds.Clear();
+                    ClearControlledInstance();
+                    foreach (var item in _itemBuffer)
+                    {
+                        if (item.Prefab == null)
+                        {
+                            _usedPrefabIds.Add(0);
+                        }
+                        else
+                        {
+                            var instance = CreateInstance(item.Prefab);
+                            _usedPrefabIds.Add(item.Prefab.GetInstanceID());
+                        }
+                    }
+                }
+
+                // Set locations
+                {
+                    var childCount = _instanceRoot == null ? 0 : _instanceRoot.transform.childCount;
+                    var childIndex = 0;
+                    for (var i = 0; i < _locationBuffer.Count; i++)
+                    {
+                        if (_itemBuffer[i] == null || _itemBuffer[i].Prefab == null)
+                        {
+                            continue;
+                        }
+                        if (childIndex >= childCount)
+                        {
+                            Debug.LogError($"Child count mismatch: {childIndex} >= {childCount}");
+                            break;
+                        }
+                        var instance = _instanceRoot.transform.GetChild(childIndex++).gameObject;
+                        var location = _locationBuffer[i];
                         instance.transform.position = location.position;
                         instance.transform.rotation = location.rotation;
                         instance.transform.localScale = location.scale;
                     }
+                    if (childIndex < childCount)
+                    {
+                        Debug.LogError($"Child count mismatch: {childIndex} != {childCount}");
+                    }
                 }
+
+                // Clear lists
+                _locationBuffer.Clear();
+                _itemBuffer.Clear();
             }
             finally
             {
                 Random.state = randomStateCache;
             }
+
+            ClearUnusedInstances();
         }
 
         protected abstract Vector3 GetLocalBounds();
@@ -255,10 +340,7 @@ namespace InstantiateComponents
         private GameObject _instanceRoot;
         public GameObject InstanceRoot => _instanceRoot;
 
-        private static readonly List<ShapeInstantiate> _componentBuffer = new List<ShapeInstantiate>();
-        private static readonly List<GameObject> _unusedObjectBuffer = new List<GameObject>();
-
-        private void ClearInstances()
+        private void ClearControlledInstance()
         {
             if (Application.isPlaying)
             {
@@ -269,8 +351,12 @@ namespace InstantiateComponents
                 DestroyImmediate(_instanceRoot);
             }
             _instanceRoot = null;
+        }
 
-            // Destroy unused root objects.
+        private static readonly List<ShapeInstantiate> _componentBuffer = new List<ShapeInstantiate>();
+        private static readonly List<GameObject> _unusedObjectBuffer = new List<GameObject>();
+        private void ClearUnusedInstances()
+        {
             _componentBuffer.Clear();
             GetComponents(_componentBuffer);
             _unusedObjectBuffer.Clear();
@@ -307,6 +393,10 @@ namespace InstantiateComponents
                     DestroyImmediate(destroyObject);
                 }
             }
+
+            // Clear lists
+            _componentBuffer.Clear();
+            _unusedObjectBuffer.Clear();
         }
 
         private GameObject CreateInstance(GameObject prefab)
