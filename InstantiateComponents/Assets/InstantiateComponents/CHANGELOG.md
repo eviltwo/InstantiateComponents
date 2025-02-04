@@ -1,6 +1,9 @@
 # Changelog
 
-## [1.1.0] - In Development
+## [1.1.1] - In Development
+### Added
+- Added GridInstantiate.
+- Added InstantiateBase class.
 ### Changed
 - Changed to reuse generated objects whenever possible.
 
