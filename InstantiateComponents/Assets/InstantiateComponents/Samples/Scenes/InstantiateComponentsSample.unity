@@ -250,8 +250,6 @@ MonoBehaviour:
     Probability: 1
   - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
     Probability: 1
-  Density: 0.5
-  Spacing: 0.5
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -264,6 +262,8 @@ MonoBehaviour:
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -9972
+  Density: 0.5
+  Spacing: 0.5
   BoxSize: {x: 10, y: 0, z: 10}
 --- !u!4 &572027308
 Transform:
@@ -406,8 +406,6 @@ MonoBehaviour:
     Probability: 1
   - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
     Probability: 1
-  Density: 0.5
-  Spacing: 0.5
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -420,6 +418,8 @@ MonoBehaviour:
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -9972
+  Density: 0.5
+  Spacing: 0.5
   BoxSize: {x: 10, y: 10, z: 10}
 --- !u!4 &1034584868
 Transform:
@@ -563,8 +563,6 @@ MonoBehaviour:
     Probability: 1
   - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
     Probability: 1
-  Density: 0.2
-  Spacing: 0.5
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -577,6 +575,8 @@ MonoBehaviour:
   FitHeightToTerrain: 1
   FitRotationToTerrain: 1
   RandomSeed: -9972
+  Density: 0.2
+  Spacing: 0.5
   BoxSize: {x: 50, y: 0, z: 50}
 --- !u!4 &1249591104
 Transform:
@@ -627,8 +627,6 @@ MonoBehaviour:
     Probability: 1
   - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
     Probability: 1
-  Density: 0.5
-  Spacing: 0.5
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -641,6 +639,8 @@ MonoBehaviour:
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -386314
+  Density: 0.5
+  Spacing: 0.5
   SphereSize: {x: 10, y: 0, z: 10}
 --- !u!4 &1353437444
 Transform:
@@ -691,8 +691,6 @@ MonoBehaviour:
     Probability: 1
   - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
     Probability: 1
-  Density: 0.5
-  Spacing: 0.5
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -705,6 +703,8 @@ MonoBehaviour:
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -386314
+  Density: 0.5
+  Spacing: 0.5
   SphereSize: {x: 10, y: 10, z: 10}
 --- !u!4 &1359139177
 Transform:
