@@ -3,6 +3,7 @@ using UnityEditor;
 namespace InstantiateComponents.Editor
 {
     [CustomEditor(typeof(RingInstantiate))]
+    [CanEditMultipleObjects]
     public class RingInstantiateEditor : InstantiateBaseEditor
     {
         public override void OnInspectorGUI()
