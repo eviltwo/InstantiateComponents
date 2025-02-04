@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 
 namespace InstantiateComponents
 {
+    [ExecuteInEditMode]
+    [SelectionBase]
     public abstract class InstantiateBase : MonoBehaviour
     {
         [Serializable]
@@ -228,6 +230,10 @@ namespace InstantiateComponents
                 // Get local positions
                 _localPositionBuffer.Clear();
                 CalculateLocalLocationsUsingRandom(_localPositionBuffer);
+                if (_localPositionBuffer.Count > CountLimit)
+                {
+                    _localPositionBuffer.RemoveRange(CountLimit, _localPositionBuffer.Count - CountLimit);
+                }
 
                 // Translate to world positions
                 for (var i = 0; i < _localPositionBuffer.Count; i++)
@@ -238,7 +244,7 @@ namespace InstantiateComponents
                 }
 
                 // Choose items
-                for (var i = 0; i < _locationBuffer.Count; i++)
+                for (var i = 0; i < _localPositionBuffer.Count; i++)
                 {
                     resultItems.Add(ItemsToInstantiate[randomBox.Choose()]);
                 }
@@ -310,7 +316,7 @@ namespace InstantiateComponents
             _instanceRoot = null;
         }
 
-        private static readonly List<ShapeInstantiate> _componentBuffer = new List<ShapeInstantiate>();
+        private static readonly List<InstantiateBase> _componentBuffer = new List<InstantiateBase>();
         private static readonly List<GameObject> _unusedObjectBuffer = new List<GameObject>();
         private void ClearUnusedInstances()
         {

@@ -4,8 +4,6 @@ using Random = UnityEngine.Random;
 
 namespace InstantiateComponents
 {
-    [ExecuteInEditMode]
-    [SelectionBase]
     public abstract class ShapeInstantiate : InstantiateBase
     {
         [SerializeField]
@@ -62,11 +60,6 @@ namespace InstantiateComponents
                         results.Add(position);
                     }
                 }
-            }
-
-            if (results.Count > CountLimit)
-            {
-                results.RemoveRange(CountLimit, results.Count - CountLimit);
             }
         }
 
