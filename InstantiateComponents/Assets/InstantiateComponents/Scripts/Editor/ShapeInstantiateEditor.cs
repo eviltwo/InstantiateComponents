@@ -7,8 +7,11 @@ namespace InstantiateComponents.Editor
     {
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.Density)));
             EditorGUILayout.PropertyField(serializedObject.FindProperty(nameof(ShapeInstantiate.Spacing)));
+            serializedObject.ApplyModifiedProperties();
+
             base.OnInspectorGUI();
         }
     }
