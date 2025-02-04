@@ -3,6 +3,7 @@ using UnityEditor;
 namespace InstantiateComponents.Editor
 {
     [CustomEditor(typeof(BoxInstantiate))]
+    [CanEditMultipleObjects]
     public class BoxInstantiateEditor : ShapeInstantiateEditor
     {
         public override void OnInspectorGUI()

@@ -5,6 +5,7 @@ using UnityEngine;
 namespace InstantiateComponents.Editor
 {
     [CustomEditor(typeof(InstantiateBase))]
+    [CanEditMultipleObjects]
     public class InstantiateBaseEditor : UnityEditor.Editor
     {
         private bool _isRandomPositionOffset;

@@ -3,6 +3,7 @@ using UnityEditor;
 namespace InstantiateComponents.Editor
 {
     [CustomEditor(typeof(GridInstantiate))]
+    [CanEditMultipleObjects]
     public class GridInstantiateEditor : InstantiateBaseEditor
     {
         public override void OnInspectorGUI()
