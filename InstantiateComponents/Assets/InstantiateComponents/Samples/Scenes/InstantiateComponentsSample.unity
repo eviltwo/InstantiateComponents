@@ -259,6 +259,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -9972
@@ -415,6 +418,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -138728
@@ -478,6 +484,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -9972
@@ -635,6 +644,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 1
   FitRotationToTerrain: 1
   RandomSeed: -9972
@@ -699,6 +711,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -386314
@@ -763,6 +778,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -386314
@@ -827,6 +845,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -20414
@@ -891,6 +912,9 @@ MonoBehaviour:
   ScaleOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
+  UniformScaleOffset:
+    Min: 0
+    Max: 0
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -25242

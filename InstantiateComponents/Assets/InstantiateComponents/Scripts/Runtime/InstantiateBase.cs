@@ -29,6 +29,13 @@ namespace InstantiateComponents
             public Vector3 Max = Vector3.zero;
         }
 
+        [Serializable]
+        public class FloatRange
+        {
+            public float Min = 0;
+            public float Max = 0;
+        }
+
         [SerializeField]
         public Vector3Range PositionOffset = default;
 
@@ -37,6 +44,9 @@ namespace InstantiateComponents
 
         [SerializeField]
         public Vector3Range ScaleOffset = default;
+
+        [SerializeField]
+        public FloatRange UniformScaleOffset = default;
 
         [SerializeField, Range(0, 1)]
         public float FitHeightToTerrain = 0f;
@@ -296,8 +306,10 @@ namespace InstantiateComponents
             }
 
             // Scale
+            var uniformScaleOffset = Random.Range(UniformScaleOffset.Min, UniformScaleOffset.Max);
+            scale = localLocation.scale * (1 + uniformScaleOffset);
             var scaleOffset = Vector3.Lerp(ScaleOffset.Min, ScaleOffset.Max, Random.value);
-            scale = localLocation.scale + scaleOffset;
+            scale += scaleOffset;
         }
 
         private GameObject _instanceRoot;
