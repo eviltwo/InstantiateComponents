@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace InstantiateComponents
 {
+    [AddComponentMenu(nameof(InstantiateComponents) + "/" + nameof(RingInstantiate))]
     public class RingInstantiate : InstantiateBase
     {
         public float Count = 8;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace InstantiateComponents
 {
+    [AddComponentMenu(nameof(InstantiateComponents) + "/" + nameof(CurvedLineInstantiate))]
     public class CurvedLineInstantiate : GridInstantiate
     {
         [Range(-45f, 45f)]
