@@ -3,8 +3,10 @@
 ## [1.2.0] - InDevelopment
 ### Added
 - Added CurvedLineInstantiate.
+- Added the Uniform Scale Offset property.
 ### Changed
 - RingInstantiate now calculates rotation.
+- The generated objects are affected by the parent object's transform.scale.
 
 ## [1.1.1] - 2025-02-06
 ### Added
