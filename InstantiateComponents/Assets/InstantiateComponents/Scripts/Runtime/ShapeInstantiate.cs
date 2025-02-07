@@ -23,7 +23,7 @@ namespace InstantiateComponents
 
         protected abstract float GetWeight(Vector3 localPosition);
 
-        protected override void CalculateLocalLocationsUsingRandom(List<Vector3> results)
+        protected override void CalculateLocalLocationsUsingRandom(List<Location> results)
         {
             results.Clear();
 
@@ -57,7 +57,12 @@ namespace InstantiateComponents
                             continue;
                         }
 
-                        results.Add(position);
+                        results.Add(new Location
+                        {
+                            position = position,
+                            rotation = Quaternion.identity,
+                            scale = Vector3.one,
+                        });
                     }
                 }
             }

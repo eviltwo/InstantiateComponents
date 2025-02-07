@@ -848,6 +848,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1826408301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826408303}
+  - component: {fileID: 1826408302}
+  m_Layer: 0
+  m_Name: CurvedLineInstantiate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1826408302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826408301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7a37d63264454580eda82418053c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemsToInstantiate:
+  - Prefab: {fileID: 7413948650164539708, guid: c7d115ed7eb1b5547923ea431fe8adb2, type: 3}
+    Probability: 1
+  - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
+    Probability: 1
+  PositionOffset:
+    Min: {x: 0, y: 0, z: 0}
+    Max: {x: 0, y: 0, z: 0}
+  RotationOffset:
+    Min: {x: 0, y: 0, z: 0}
+    Max: {x: 0, y: 0, z: 0}
+  ScaleOffset:
+    Min: {x: 0, y: 0, z: 0}
+    Max: {x: 0, y: 0, z: 0}
+  FitHeightToTerrain: 0
+  FitRotationToTerrain: 0
+  RandomSeed: -25242
+  Count: {x: 2, y: 2, z: 5}
+  Spacing: {x: 2, y: 2, z: 2}
+  AnglePerUnit: 8
+  Axis: 2
+--- !u!4 &1826408303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826408301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -861,4 +926,5 @@ SceneRoots:
   - {fileID: 1359139177}
   - {fileID: 943198055}
   - {fileID: 1593326026}
+  - {fileID: 1826408303}
   - {fileID: 1249591104}

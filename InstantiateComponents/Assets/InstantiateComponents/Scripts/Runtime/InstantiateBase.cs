@@ -210,7 +210,6 @@ namespace InstantiateComponents
             ClearUnusedInstances();
         }
 
-        private static List<Vector3> _localPositionBuffer = new List<Vector3>();
         protected void CalculateLocationsAndItems(List<Location> resultLocations, List<InstantiableItem> resultItems)
         {
             resultLocations.Clear();
@@ -228,23 +227,22 @@ namespace InstantiateComponents
             try
             {
                 // Get local positions
-                _localPositionBuffer.Clear();
-                CalculateLocalLocationsUsingRandom(_localPositionBuffer);
-                if (_localPositionBuffer.Count > CountLimit)
+                CalculateLocalLocationsUsingRandom(resultLocations);
+                if (resultLocations.Count > CountLimit)
                 {
-                    _localPositionBuffer.RemoveRange(CountLimit, _localPositionBuffer.Count - CountLimit);
+                    resultLocations.RemoveRange(CountLimit, resultLocations.Count - CountLimit);
                 }
 
                 // Translate to world positions
-                for (var i = 0; i < _localPositionBuffer.Count; i++)
+                for (var i = 0; i < resultLocations.Count; i++)
                 {
                     var location = new Location();
-                    GetWorldTRS(_localPositionBuffer[i], out location.position, out location.rotation, out location.scale);
-                    resultLocations.Add(location);
+                    GetWorldTRS(resultLocations[i], out location.position, out location.rotation, out location.scale);
+                    resultLocations[i] = location;
                 }
 
                 // Choose items
-                for (var i = 0; i < _localPositionBuffer.Count; i++)
+                for (var i = 0; i < resultLocations.Count; i++)
                 {
                     resultItems.Add(ItemsToInstantiate[randomBox.Choose()]);
                 }
@@ -255,20 +253,21 @@ namespace InstantiateComponents
             }
         }
 
-        protected abstract void CalculateLocalLocationsUsingRandom(List<Vector3> results);
+        protected abstract void CalculateLocalLocationsUsingRandom(List<Location> results);
 
         private void GetWorldTRS(
-            Vector3 localPosition,
+            Location localLocation,
             out Vector3 position,
             out Quaternion rotation,
             out Vector3 scale)
         {
-            var worldPosition = transform.position + transform.rotation * localPosition;
+            // Fix value
+            localLocation.rotation.Normalize();
 
             // Position
-            position = worldPosition;
             var posOffset = Vector3.Lerp(PositionOffset.Min, PositionOffset.Max, Random.value);
-            position += transform.rotation * posOffset;
+            localLocation.position += posOffset;
+            position = transform.TransformPoint(localLocation.position);
             if (FitHeightToTerrain > 0)
             {
                 var terrain = Terrain.activeTerrain;
@@ -282,7 +281,8 @@ namespace InstantiateComponents
 
             // Rotation
             var rotOffset = Vector3.Lerp(RotationOffset.Min, RotationOffset.Max, Random.value);
-            rotation = Quaternion.Euler(rotOffset) * transform.rotation;
+            localLocation.rotation = Quaternion.Euler(rotOffset) * localLocation.rotation;
+            rotation = transform.rotation * localLocation.rotation;
             if (FitRotationToTerrain > 0)
             {
                 var terrain = Terrain.activeTerrain;
@@ -297,7 +297,7 @@ namespace InstantiateComponents
 
             // Scale
             var scaleOffset = Vector3.Lerp(ScaleOffset.Min, ScaleOffset.Max, Random.value);
-            scale = Vector3.one + scaleOffset;
+            scale = localLocation.scale + scaleOffset;
         }
 
         private GameObject _instanceRoot;

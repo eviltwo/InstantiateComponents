@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace InstantiateComponents.Editor
 {
-    [CustomEditor(typeof(InstantiateBase))]
+    [CustomEditor(typeof(InstantiateBase), true)]
     [CanEditMultipleObjects]
     public class InstantiateBaseEditor : UnityEditor.Editor
     {

@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.1.1] - In Development
+## [1.2.0] - InDevelopment
+### Added
+- Added CurvedLineInstantiate.
+### Changed
+- RingInstantiate now calculates rotation.
+
+## [1.1.1] - 2025-02-06
 ### Added
 - Added GridInstantiate.
 - Added InstantiateBase class.
