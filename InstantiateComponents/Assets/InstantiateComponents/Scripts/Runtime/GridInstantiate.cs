@@ -18,7 +18,7 @@ namespace InstantiateComponents
             Count.z = Mathf.Max(1, Count.z);
         }
 
-        protected override void CalculateLocalLocationsUsingRandom(List<Vector3> results)
+        protected override void CalculateLocalLocationsUsingRandom(List<Location> results)
         {
             results.Clear();
 
@@ -35,7 +35,12 @@ namespace InstantiateComponents
                             xIdx * Spacing.x,
                             yIdx * Spacing.y,
                             zIdx * Spacing.z);
-                        results.Add(position);
+                        results.Add(new Location
+                        {
+                            position = position,
+                            rotation = Quaternion.identity,
+                            scale = Vector3.one,
+                        });
                     }
                 }
             }

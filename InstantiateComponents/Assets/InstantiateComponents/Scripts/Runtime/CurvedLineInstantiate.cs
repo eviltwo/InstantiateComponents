@@ -22,7 +22,7 @@ namespace InstantiateComponents
             Count = new Vector3Int(1, 1, 5);
         }
 
-        protected override void CalculateLocalLocationsUsingRandom(List<Vector3> results)
+        protected override void CalculateLocalLocationsUsingRandom(List<Location> results)
         {
             // Calculate grid
             base.CalculateLocalLocationsUsingRandom(results);
@@ -35,7 +35,7 @@ namespace InstantiateComponents
             // Modify grid to form a curved line
             for (int i = 0; i < results.Count; i++)
             {
-                var p = results[i];
+                var p = results[i].position;
                 int horizontalDim = Axis == AxisKind.X ? (int)AxisKind.Z : (int)AxisKind.X;
                 int horizontalSign = Axis == AxisKind.X ? -1 : 1;
                 int verticalDim = (int)Axis;
@@ -50,7 +50,13 @@ namespace InstantiateComponents
                 var y = Mathf.Sin(rad) * r - Mathf.Sin(rad) * p[horizontalDim] * horizontalSign;
                 p[horizontalDim] = x;
                 p[verticalDim] = y;
-                results[i] = p;
+                var rotationAxis = Axis == AxisKind.Y ? Vector3.back : Vector3.up;
+                results[i] = new Location
+                {
+                    position = p,
+                    rotation = Quaternion.AngleAxis(rad * Mathf.Rad2Deg, rotationAxis),
+                    scale = Vector3.one,
+                };
             }
         }
     }

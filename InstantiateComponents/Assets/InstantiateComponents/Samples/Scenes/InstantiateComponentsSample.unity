@@ -880,6 +880,8 @@ MonoBehaviour:
   ItemsToInstantiate:
   - Prefab: {fileID: 7413948650164539708, guid: c7d115ed7eb1b5547923ea431fe8adb2, type: 3}
     Probability: 1
+  - Prefab: {fileID: 493345184915089241, guid: 5062ce0b8501cf046bdbf617115e139e, type: 3}
+    Probability: 1
   PositionOffset:
     Min: {x: 0, y: 0, z: 0}
     Max: {x: 0, y: 0, z: 0}
@@ -892,9 +894,9 @@ MonoBehaviour:
   FitHeightToTerrain: 0
   FitRotationToTerrain: 0
   RandomSeed: -25242
-  Count: {x: 3, y: 2, z: 5}
-  Spacing: {x: 2, y: 2, z: 2.24}
-  AnglePerUnit: 2
+  Count: {x: 2, y: 2, z: 5}
+  Spacing: {x: 2, y: 2, z: 2}
+  AnglePerUnit: 8
   Axis: 2
 --- !u!4 &1826408303
 Transform:
