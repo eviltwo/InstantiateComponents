@@ -2,7 +2,7 @@ using UnityEditor;
 
 namespace InstantiateComponents.Editor
 {
-    [CustomEditor(typeof(GridInstantiate))]
+    [CustomEditor(typeof(GridInstantiate), true)]
     [CanEditMultipleObjects]
     public class GridInstantiateEditor : InstantiateBaseEditor
     {

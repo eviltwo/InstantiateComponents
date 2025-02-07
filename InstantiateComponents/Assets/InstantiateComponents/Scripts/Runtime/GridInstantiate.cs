@@ -6,7 +6,7 @@ namespace InstantiateComponents
     [AddComponentMenu(nameof(InstantiateComponents) + "/" + nameof(GridInstantiate))]
     public class GridInstantiate : InstantiateBase
     {
-        public Vector3Int Count = new Vector3Int(10, 1, 10);
+        public Vector3Int Count = new Vector3Int(5, 1, 5);
 
         public Vector3 Spacing = new Vector3(1, 1, 1);
 
